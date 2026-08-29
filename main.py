@@ -1,31 +1,44 @@
 print("📚 Student Grade Calculator")
+print("-" * 30)
 
 name = input("Enter student name: ")
 
-math = float(input("Math marks: "))
-science = float(input("Science marks: "))
-english = float(input("English marks: "))
-history = float(input("History marks: "))
-computer = float(input("Computer marks: "))
+subjects = {
+    "Math": float(input("Math marks: ")),
+    "Science": float(input("Science marks: ")),
+    "English": float(input("English marks: ")),
+    "History": float(input("History marks: ")),
+    "Computer": float(input("Computer marks: "))
+}
 
-total = math + science + english + history + computer
-percentage = total / 5
+total = sum(subjects.values())
+percentage = total / len(subjects)
 
+# Grade
 if percentage >= 90:
     grade = "A+ 🌟"
 elif percentage >= 80:
-    grade = "A"
+    grade = "A 🥇"
 elif percentage >= 70:
-    grade = "B"
+    grade = "B 👍"
 elif percentage >= 60:
-    grade = "C"
+    grade = "C 🙂"
 elif percentage >= 50:
-    grade = "D"
+    grade = "D 😐"
 else:
     grade = "F ❌"
 
-print("\n------ RESULT ------")
+# Pass or Fail
+status = "PASS ✅" if percentage >= 40 else "FAIL ❌"
+
+# Highest scoring subject
+highest_subject = max(subjects, key=subjects.get)
+
+print("\n🎓 RESULT")
+print("-" * 30)
 print("Student:", name)
 print("Total Marks:", total)
-print("Percentage:", percentage)
+print("Percentage:", round(percentage, 2))
 print("Grade:", grade)
+print("Status:", status)
+print("Best Subject:", highest_subject, "-", subjects[highest_subject])
